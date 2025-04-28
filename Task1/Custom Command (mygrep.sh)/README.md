@@ -95,6 +95,27 @@ The repository includes the following files:
 
     ![Missing Search String or File Name](./screenshots/missing_string_or_file_name.png)
 
+## Arguments and Options Handling
+
+- The script uses `getopts` to parse short options like `-n`, `-v`, `-c`, and `-l`.
+- After parsing options, the script uses `shift` to move past the options and fetch the search string and filename.
+- It checks if enough arguments are passed (both search string and file).
+- It validates if the provided file exists and is readable.
+- If the `-l` option is used, it highlights the filename in purple if a match is found.
+- If `--help` is passed as the first argument, it prints the help information from `help.sh` and exits.
+
+## If Extended Support (Regex, etc.)
+
+When we add support for advanced regex (`-E`) or more options:
+- We would need to modify the `grep_options` variable to handle `-E`.
+- Allow disabling default case-insensitive `-i` when `-I` is specified.
+- Validate conflicts (for example, if `-i` and `-I` are passed together, decide priority).
+- Possibly improve `getopts` with a more advanced parser for long options.
+
+## Reflection
+
+- **Hardest part**: The trickiest part was correctly parsing multiple combined options (like `-vn` or `-nv`) and ensuring that invalid combinations or missing arguments were gracefully handled with user-friendly messages.
+- **Lesson learned**: Good error handling and clear user guidance (help messages) are very important, even in small scripts.
 ## Notes
 - The script is a simplified version of `grep` with additional error handling.
 - It is designed to handle invalid inputs (e.g., missing file or insufficient arguments) gracefully.
