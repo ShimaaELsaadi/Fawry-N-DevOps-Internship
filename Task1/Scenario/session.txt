@@ -1,0 +1,32 @@
+$ nslookup internal.example.com
+;; connection timed out; no servers could be reached
+
+$ host internal.example.com
+Host internal.example.com not found: 3(NXDOMAIN)
+
+$ ping -c 4 127.0.0.53
+64 bytes from 127.0.0.53: icmp_seq=1 ttl=64 time=0.023 ms
+...
+
+$ dig @192.168.1.1 internal.example.com +short
+
+(no output)
+
+$ sudo apache2ctl -S
+VirtualHost configuration:
+*:80                   is a NameVirtualHost
+         default server default-server (/etc/apache2/sites-enabled/000-default.conf:1)
+...
+
+$ curl -v http://internal.example.com
+* Could not resolve host: internal.example.com
+...
+
+# After fixing /etc/hosts:
+$ ping internal.example.com
+64 bytes from 192.168.1.10: icmp_seq=1 ttl=64 time=0.5 ms
+
+$ curl -v http://internal.example.com
+* Connected to internal.example.com (192.168.1.10) port 80 (#0)
+> GET / HTTP/1.1
+...
