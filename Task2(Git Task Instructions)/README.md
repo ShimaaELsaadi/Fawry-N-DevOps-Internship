@@ -9,11 +9,13 @@ This task demonstrates branch management, commit operations, reset & reflog usag
 ## Branch Setup
 
 - Created two branches:  
-  - `develop`  
-  ![add develop branch](screenshots/createdevelop.png)  
-  - `alpha`
-  ![add alpha branch](screenshots/createalpha.png) 
+  `develop`
+   
+   ![add develop branch](screenshots/createdevelop.png)
 
+  `alpha`
+    
+   ![add alpha branch](screenshots/createalpha.png) 
 ---
 
 ## Part 1: Work on `develop` Branch
